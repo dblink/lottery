@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>抽奖主页</title>
+</head>
+<body>
+    <canvas id="canvas" width="400" height="300"  style="background:#ededed;">
+        请升级您的浏览器
+    </canvas>
+    <a id="start">开始</a>
+    <script src="js/lotteryRect.js"></script>
+    <script>
+        (function(_win){
+            var _canvas = document.getElementById("canvas");
+            var _imageScrList = ["./img/test.png","./img/test.png",
+                "./img/test.png","./img/test.png","./img/test.png","./img/test.png",
+                "./img/test.png","./img/test.png","./img/test.png","./img/test.png"];
+            var _setting = {
+                id: "canvas",
+                imageSrc: _imageScrList, //图片列表
+                canvasHeight: _canvas.height, //高度
+                canvasWidth: _canvas.width, //宽度
+                canvasRow: 6, //设置行
+                canvasCol: 3 //设置列
+            };
+            var _lottery = new _win.LotteryRect(_setting);
+            _lottery.drawLottery();
+            _lottery.animatedLottery = _lottery.animatedLottery(0);//初始化
+            document.getElementById("start").addEventListener("click",function(){
+                _lottery.winner = 2;
+                _lottery.animatedLottery();
+            })
+        })(window);
+    </script>
+</body>
+</html>
